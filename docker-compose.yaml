@@ -1,0 +1,32 @@
+services:
+  python_executor:
+    build:
+      context: ./backend
+      dockerfile: Dockerfiles/Dockerfile.py
+    volumes:
+      - ./backend/code:/app
+    command: ["python", "/app/main.py"]
+
+  js_executor:
+    build:
+      context: ./backend
+      dockerfile: Dockerfiles/Dockerfile.js
+    volumes:
+      - ./backend/code:/app
+    command: ["node", "/app/main.js"]
+
+  java_executor:
+    build:
+      context: ./backend
+      dockerfile: Dockerfiles/Dockerfile.ava
+    volumes:
+      - ./backend/code:/app
+    command: ["sh", "-c", "javac /app/Main.java && java -cp /app Main"]
+
+  cpp_executor:
+    build:
+      context: ./backend
+      dockerfile: Dockerfiles/Dockerfile.cpp
+    volumes:
+      - ./backend/code:/app
+    command: ["sh", "-c", "g++ /app/main.cpp -o /app/main.out && /app/main.out"]
